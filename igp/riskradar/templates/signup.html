@@ -1,0 +1,84 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="{% static 'css/signup.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <script src="{% static 'js/signup.js' %}" defer></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <div class="container">
+        <h2>Sign Up</h2>
+        <form method="POST" action="{% url 'riskradar:signup' %}">
+            {% csrf_token %}
+            {% if form.errors %}
+                <div class="errors">
+                    <p>Form is not valid. Please correct the errors and try again.</p>
+                    <ul>
+                        {% for field in form %}
+                            {% if field.errors %}
+                                <li><strong>{{ field.label }}:</strong> {{ field.errors }}</li>
+                            {% endif %}
+                        {% endfor %}
+                        {% if form.non_field_errors %}
+                            <li>{{ form.non_field_errors }}</li>
+                        {% endif %}
+                    </ul>
+                </div>
+            {% endif %}
+        
+            <div class="form-field">
+                <label for="new-username">Username:</label>
+                {{ form.username }}
+            </div>
+            <div class="form-field">
+                <label for="email">Email:</label>
+                {{ form.email }}
+            </div>
+            <div class="form-field">
+                <label for="new-password">Password:</label>
+                <div class="password-wrapper">
+                    {{ form.password1 }}
+                    <i class="fa fa-eye-slash toggle-password" data-input="id_password1"></i>
+                </div>
+                <div id="password-tooltip" class="tooltip">
+                    <strong>Password must contain:</strong>
+                    <ul>
+                        <li id="criteria-length">At least 16 characters</li>
+                        <li id="criteria-lowercase">Lower case letters (a-z)</li>
+                        <li id="criteria-uppercase">Upper case letters (A-Z)</li>
+                        <li id="criteria-numbers">Numbers (0-9)</li>
+                        <li id="criteria-special">Special characters (e.g. !@#$%^&*)</li>
+                        <li id="criteria-consecutive">No more than 2 identical characters in a row</li>
+                    </ul>                
+                </div>
+            </div>
+            <div class="form-field">
+                <label for="confirm-password">Confirm Password:</label>
+                <div class="password-wrapper">
+                    {{ form.password2 }}
+                    <i class="fa fa-eye-slash toggle-password" data-input="id_password2"></i>
+                </div>
+            </div>
+
+            <!-- Security Questions -->
+            <div class="form-field">
+                <label for="security-question1">Security Question 1:</label>
+                {{ form.security_question_1 }}
+                {{ form.security_answer_1 }}
+            </div>
+            <div class="form-field">
+                <label for="security-question2">Security Question 2:</label>
+                {{ form.security_question_2 }}
+                {{ form.security_answer_2 }}
+            </div>
+            <button type="submit">Sign Up</button>
+        </form>
+        <p><a href="{% url 'riskradar:login' %}">Already have an account? Log in</a></p>
+    </div>
+</body>
+</html>
+

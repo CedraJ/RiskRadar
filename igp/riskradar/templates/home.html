@@ -1,0 +1,80 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Risk Management Dashboard</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <!-- Load Chart.js from CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+</head>
+<body>
+    <header class="header">
+        <div class="welcome-message">
+            <h1>Welcome, {{ request.user.username }}</h1>
+        </div>
+        <nav class="top-nav">
+            <ul>
+                <li><a href="{% url 'riskradar:home' %}">Dashboard</a></li>
+                <li><a href="{% url 'riskradar:assets' %}">Assets</a></li>
+                <li><a href="{% url 'riskradar:profile' %}">Profile</a></li>
+                <li><a href="{% url 'riskradar:logout' %}">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main class="container">
+        <!-- Summary Cards -->
+        <div class="card-grid">
+            <div class="card" id="total-risks">
+                <h2>Total Risks</h2>
+                <p>0</p>
+            </div>
+            <div class="card" id="high-risks">
+                <h2>High Risks</h2>
+                <p>0</p>
+            </div>
+            <div class="card" id="moderate-risks">
+                <h2>Moderate Risks</h2>
+                <p>0</p>
+            </div>
+            <div class="card" id="low-risks">
+                <h2>Low Risks</h2>
+                <p>0</p>
+            </div>
+        </div>
+        
+        <!-- Chart.js -->
+        <div class="data-display">
+            <h2>Risk Levels</h2>
+            <canvas id="riskChart" style="height: 400px;"></canvas>
+        </div>
+        
+        <div class="data-display">
+            <h2>Risk Register</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Risk ID</th>
+                        <th>Description</th>
+                        <th>Category</th>
+                        <th>Owner</th>
+                        <th>Value</th>
+                        <th>Priority</th>
+                        <th>Risk Level</th>
+                        <th>Control Measures Effectiveness</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody id="risk-register-body">
+                    <!-- Dynamic rows will be added here -->
+                </tbody>
+            </table>
+        </div>
+    </main>
+    <script src="{% static 'js/home.js' %}"></script> 
+    <script src="{% static 'js/nav.js' %}"></script>
+</body>
+</html>

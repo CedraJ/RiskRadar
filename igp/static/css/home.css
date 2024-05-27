@@ -1,0 +1,81 @@
+.card-grid {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 32px;
+}
+
+.card {
+  background-color: white;
+  padding: 32px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  flex: 1;
+  min-width: 200px;
+  max-width: 250px;
+  text-align: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.card h2 {
+  margin-top: 0;
+  color: #5e42ff;
+  font-size: 20px; 
+}
+
+.card p {
+  font-size: 28px; 
+  color: #000000;
+}
+
+.data-display {
+  margin-bottom: 32px;
+  padding: 32px;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  overflow: auto; /* Added to handle overflow */
+}
+
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 16px;
+  background-color: #fff;
+}
+
+table, th, td {
+  border: 1px solid #ddd;
+}
+
+th, td {
+  padding: 12px; 
+  text-align: left;
+}
+
+th {
+  background-color: #001f3f; 
+  color: #ffffff; 
+  font-weight: bold;
+}
+
+td {
+  background-color: #f9f9f9; 
+  color: #333333; 
+}
+
+tr:nth-child(even) td {
+  background-color: #f2f2f2;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 32px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}

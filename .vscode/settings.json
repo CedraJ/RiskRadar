@@ -1,0 +1,6 @@
+{
+    "python.pythonPath": "/Users/cedraj/Library/Mobile Documents/com~apple~CloudDocs/ERM/myenv/bin/python",
+    "python.analysis.extraPaths": [
+        "/Users/cedraj/Library/Mobile Documents/com~apple~CloudDocs/ERM/myenv/lib/python3.12/site-packages"
+    ]
+}

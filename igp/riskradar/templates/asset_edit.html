@@ -1,0 +1,57 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Asset</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/asset_edit.css' %}">
+</head>
+<body>
+<div class="container">
+    <h1>Edit Asset</h1>
+    <form method="post">
+        {% csrf_token %}
+        <label for="name">Asset Name:</label>
+        <input type="text" id="name" name="name" value="{{ asset.name }}" required><br>
+
+        <label for="asset_type">Asset Type:</label>
+        <input type="text" id="asset_type" name="asset_type" value="{{ asset.asset_type }}" required><br>
+
+        <label for="owner">Asset Owner:</label>
+        <input type="text" id="owner" name="owner" value="{{ asset.owner }}" required><br>
+
+        <label for="value">Asset Value:</label>
+        <input type="number" id="value" name="value" value="{{ asset.value }}" required><br>
+
+        <label for="priority">Priority:</label>
+        <select id="priority" name="priority" required>
+            <option value="High" {% if asset.priority == 'High' %}selected{% endif %}>High</option>
+            <option value="Moderate" {% if asset.priority == 'Moderate' %}selected{% endif %}>Moderate</option>
+            <option value="Low" {% if asset.priority == 'Low' %}selected{% endif %}>Low</option>
+        </select><br>
+
+        <label for="risk_level">Risk Level:</label>
+        <select id="risk_level" name="risk_level" required>
+            <option value="High" {% if asset.risk_level == 'High' %}selected{% endif %}>High</option>
+            <option value="Moderate" {% if asset.risk_level == 'Moderate' %}selected{% endif %}>Moderate</option>
+            <option value="Low" {% if asset.risk_level == 'Low' %}selected{% endif %}>Low</option>
+        </select><br>
+
+        <label for="control_measures_effectiveness">Control Measures Effectiveness (%):</label>
+        <input type="number" id="control_measures_effectiveness" name="control_measures_effectiveness" value="{{ asset.control_measures_effectiveness }}" required><br>
+
+        <label for="status">Status:</label>
+        <select id="status" name="status" required>
+            <option value="Active" {% if asset.status == 'Active' %}selected{% endif %}>Active</option>
+            <option value="Maintenance" {% if asset.status == 'Maintenance' %}selected{% endif %}>Maintenance</option>
+            <option value="Inactive" {% if asset.status == 'Inactive' %}selected{% endif %}>Inactive</option>
+        </select><br>
+
+        <button type="submit">Update Asset</button>
+    </form>
+    <a href="{% url 'riskradar:assets' %}">Back to Assets</a>
+</div>
+</body>
+</html>

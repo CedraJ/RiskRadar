@@ -1,0 +1,57 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header class="header">
+        <div class="welcome-message">
+            <h1>Welcome, {{ request.user.username }}</h1>
+        </div>
+        <nav class="top-nav">
+            <ul>
+              <li><a href="{% url 'riskradar:home' %}">Dashboard</a></li>
+              <li><a href="{% url 'riskradar:assets' %}">Assets</a></li>
+              <li><a href="{% url 'riskradar:profile' %}">Profile</a></li>
+              <li><a href="{% url 'riskradar:logout' %}">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div class="profile-container">
+            <div class="profile-header">
+                <i class="fa-solid fa-user profile-icon"></i>
+                <h2>{{ user.username }}</h2>
+                <p>{{ user.email }}</p>
+            </div>
+            <div class="profile-footer">
+                <a href="{% url 'riskradar:change_password' %}" class="change-password-btn">Change Password</a>
+                <button id="deleteAccountBtn" class="delete-account-btn">Delete Account</button>
+            </div>
+        </div>
+        
+        <div id="deleteAccountModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <form method="post" action="{% url 'riskradar:delete_account' %}">
+                    {% csrf_token %}
+                    <h2>Delete Account</h2>
+                    <label for="username">Confirm Username:</label>
+                    <input type="text" id="username" name="username" required><br>
+                    <label for="password">Confirm Password:</label>
+                    <input type="password" id="password" name="password" required><br>
+                    <button type="submit" class="btn btn-danger">Delete Account</button>
+                </form>
+            </div>
+        </div>
+    </main>
+    <script src="{% static 'js/nav.js' %}"></script>
+    <script src="{% static 'js/profile.js' %}"></script>
+</body>
+</html>
